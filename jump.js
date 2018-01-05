@@ -8,7 +8,7 @@
  * $Id$
  */
 
-// Constants (MS IE 11 and before does not support "const" keyword):
+// Constants (MS IE 8 and earlier versions do not support "const" keyword):
 var ballRadius = 10;
 var brickWidth = 80;
 var brickHeight = 40;
