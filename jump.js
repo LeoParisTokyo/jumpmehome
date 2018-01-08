@@ -1,9 +1,22 @@
+/**
+ * JumpMeHome
+ *
+ * @author    Leonard MOUILLET & Julien MOREAU
+ * @copyright 2018 - All rights reserved
+ *
+ * Last commit of this file:
+ * $Id$
+ */
+
+// Constants (MS IE 8 and earlier versions do not support "const" keyword):
+var ballRadius = 10;
+var brickWidth = 80;
+var brickHeight = 40;
+var brickGap = 2;
+
+// global properties:
 var canvas;
 var context;
-const ballRadius = 10;
-const brickWidth = 80;
-const brickHeight = 40;
-const brickGap = 2;
 var playerX = 75;
 var playerY = 560;
 var playerSpeedX = 0;
@@ -25,11 +38,11 @@ window.onload = function(){
 	context = canvas.getContext('2d');
 
 	setInterval(updateAll, 1000/30);
-	
+
 	document.addEventListener('keydown', keyPressed);
 	canvas.addEventListener('mousedown', mouseClicked);
 
-	gameReset();	
+	gameReset();
 }
 
 function speedUp(){
@@ -57,7 +70,7 @@ function updateAll(){
 function moveAll(){
 	if (isPaused || endLevel){
 		return;
-	} 
+	}
 
 	brickGridX += gameSpeedX;
 	movePlayer();
@@ -205,7 +218,7 @@ function addBrick(){
 function drawBricks(){
 	for (var i = brickGrid.length; i >= 0; i--){
 		var pos = Math.floor(((brickWidth * i) - brickGridX) / 80) + 1;
-		if (pos <= -1){  
+		if (pos <= -1){
 			removeBrick(); //remove element from array when it leaves the screen
 			addBrick(); //add new element to array
 		}
@@ -213,7 +226,7 @@ function drawBricks(){
 			if (brickGrid[i]){
 				colorRect((brickWidth * i) - brickGridX,canvas.height  - brickHeight, brickWidth - brickGap, brickHeight - brickGap, 'blue');
 				context.font = "20px Arial";
-				colorText("" + pos, (brickWidth * i) - brickGridX + brickWidth/2, canvas.height  - brickHeight / 2, 'white');	
+				colorText("" + pos, (brickWidth * i) - brickGridX + brickWidth/2, canvas.height  - brickHeight / 2, 'white');
 			}
 		}
 	}
@@ -229,9 +242,9 @@ function keyPressed(evt){
 		if (playerY == canvas.height - 50){
 			jump();
 		}
-		
+
 	//}
-} 	
+}
 
 function mouseClicked(evt){
 	if (endLevel){
@@ -260,3 +273,5 @@ function colorText(text, textX, textY, color){
 	context.fillStyle = color;
 	context.fillText(text, textX, textY);
 }
+
+// vim: set noexpandtab tabstop=4 shifwidth=4
